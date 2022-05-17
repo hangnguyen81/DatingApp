@@ -1,2 +1,2 @@
 # DatingApp
-Built with .NET6 and Angular
+Built with .NET6 and Angular 13
