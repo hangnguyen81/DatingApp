@@ -1,0 +1,11 @@
+form{
+    width: 500px;
+    min-width: 300px;
+}
+input{
+    margin: 1rem 0;
+}
+
+button{
+    margin-right: 10px;
+}

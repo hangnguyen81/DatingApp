@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { User } from '../model/user';
 import { AccountService } from '../services/account.service';
 
 @Component({
@@ -8,17 +10,15 @@ import { AccountService } from '../services/account.service';
 })
 export class NavComponent implements OnInit {
   model: any = {};
-  loggedIn: boolean;
 
-  constructor(private accountService: AccountService) {}
+  constructor(public accountService: AccountService) {}
 
   ngOnInit(): void {}
 
   login() {
     this.accountService.login(this.model).subscribe({
       next: (res) => {
-        console.log(res);
-        this.loggedIn = true;
+        console.log(res, 'fsdadf');
       },
       error: (error) => console.log(error),
     });
@@ -26,13 +26,5 @@ export class NavComponent implements OnInit {
 
   logout() {
     this.accountService.logout();
-    this.loggedIn = false;
-  }
-
-  getCurrentUser() {
-    this.accountService.currentUser$.subscribe({
-      next: (user) => (this.loggedIn = !!user),
-      error: (error) => console.log(error),
-    });
   }
 }
