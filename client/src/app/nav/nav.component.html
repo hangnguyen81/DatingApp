@@ -3,25 +3,32 @@
     <a class="navbar-brand" routerLink="/" routerLinkActive="active"
       >Dating App</a
     >
-    <ul class="navbar-nav me-auto" *ngIf="accountService.currentUser$ | async">
+    <ul class="navbar-nav me-auto">
+      <ng-container *ngIf="accountService.currentUser$ | async">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/members" routerLinkActive="active"
+            >Matches</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/lists" routerLinkActive="active"
+            >Lists</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/messages" routerLinkActive="active"
+            >Messages</a
+          >
+        </li>
+      </ng-container>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/members" routerLinkActive="active"
-          >Matches</a
-        >
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/lists" routerLinkActive="active"
-          >Lists</a
-        >
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/messages" routerLinkActive="active"
-          >Messages</a
+        <a class="nav-link" routerLink="/about" routerLinkActive="active"
+          >About</a
         >
       </li>
     </ul>
 
-    <div class="btn-group" dropdown *ngIf="accountService.currentUser$ | async">
+    <div class="btn-group" dropdown *ngIf="accountService.currentUser$ | async as user">
       <button
         id="button-basic"
         dropdownToggle
@@ -29,7 +36,7 @@
         class="btn btn-outline-success dropdown-toggle"
         aria-controls="dropdown-basic"
       >
-        Welcome {{ model.username }}
+        Welcome {{ user.username | titlecase }}
       </button>
       <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu mt-2">
         <li role="menuitem">
